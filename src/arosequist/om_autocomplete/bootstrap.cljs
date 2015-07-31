@@ -69,15 +69,18 @@
 
          :otherwise (dom/ul #js {:className class-name}))))))
 
-(defn render-item [app owner {:keys [class-name text-fn]}]
+(defn render-item [app owner {:keys [class-name text-fn focus-id]}]
   (reify
 
     om/IDidMount
     (did-mount [this]
       (let [{:keys [index highlight-ch select-ch]} (om/get-state owner)
-            node (om/get-node owner)]
+            node (om/get-node owner)
+            e (.getElementById js/document focus-id)]
         (gevents/listen node (.-MOUSEOVER gevents/EventType) #(put! highlight-ch index))
-        (gevents/listen node (.-CLICK gevents/EventType) #(put! select-ch index))))
+        (gevents/listen node (.-CLICK gevents/EventType) #(do
+                                                            (put! select-ch index)
+                                                            (if e (.focus e))))))
 
     om/IRenderState
     (render-state [_ {:keys [item index highlighted-index]}]
