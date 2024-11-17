@@ -1,6 +1,6 @@
-(defproject om-autocomplete "0.1.0-SNAPSHOT"
+(defproject org.clojars.roboli/om-autocomplete "0.1.0-SNAPSHOT"
   :description "An autocomplete component for Om."
-  :url "http://github.com/arosequist/om-autocomplete"
+  :url "https://github.com/roboli/om-autocomplete"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
